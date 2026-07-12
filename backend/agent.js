@@ -112,7 +112,7 @@ const gatherResearch = async (companyName) => {
     return { context, sources, marketData };
   } catch (error) {
     console.error("Error during web search:", error);
-    throw new Error("Failed to gather research data for the company.");
+    throw new Error(error.message || "Failed to gather research data for the company.");
   }
 };
 
