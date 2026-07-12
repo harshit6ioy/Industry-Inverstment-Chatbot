@@ -37,7 +37,7 @@ function App() {
     setSearchedCompany(companyToSearch);
 
     try {
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+      const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:3001').replace(/\/+$/, '');
       const response = await fetch(`${API_URL}/api/research`, {
         method: 'POST',
         headers: {
