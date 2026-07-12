@@ -41,7 +41,11 @@ const getLLM = () => {
 
 const gatherResearch = async (companyName) => {
   try {
-    const response = await fetch(`https://query2.finance.yahoo.com/v1/finance/search?q=${encodeURIComponent(companyName)}`);
+    const headers = {
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+      'Accept': 'application/json'
+    };
+    const response = await fetch(`https://query2.finance.yahoo.com/v1/finance/search?q=${encodeURIComponent(companyName)}`, { headers });
     const data = await response.json();
     
     // Validate if the company exists by checking if Yahoo Finance returned any quotes
@@ -73,7 +77,7 @@ const gatherResearch = async (companyName) => {
     // Fetch market data
     let marketData = null;
     try {
-      const chartResponse = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?range=1mo&interval=1d`);
+      const chartResponse = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?range=1mo&interval=1d`, { headers });
       const chartData = await chartResponse.json();
       
       if (chartData.chart && chartData.chart.result && chartData.chart.result.length > 0) {
