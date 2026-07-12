@@ -41,6 +41,11 @@ app.get("/health", (req, res) => {
   res.json({ status: "ok" });
 });
 
+// Root endpoint for UptimeRobot and basic pinging
+app.get("/", (req, res) => {
+  res.json({ message: "AI Investment Agent API is running!" });
+});
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
